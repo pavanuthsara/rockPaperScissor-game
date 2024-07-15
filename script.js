@@ -1,5 +1,6 @@
 const yourChoice = document.getElementById("yourChoice");
 const computerChoice = document.getElementById("computerChoice");
+const result = document.getElementById("result");
 
 const possibleChoices = document.querySelectorAll('button'); //select all the choices from button tag
 
@@ -9,6 +10,7 @@ possibleChoices.forEach(possibleChoice => possibleChoice.addEventListener(('clic
     userChoice = e.target.id;
     yourChoice.innerHTML = userChoice;
     generateComputerChoice();
+    generateResult();
 }))
 
 let randomComputerChoice;
@@ -16,14 +18,33 @@ let randomComputerChoice;
 function generateComputerChoice(){
     const randomNumber = Math.ceil(Math.random() * possibleChoices.length); //select random integer between 1-3
     if(randomNumber == 1)
-        computerChoice.innerHTML = "rock👊";
+        randomComputerChoice = "rock👊";
     else if(randomNumber == 2)
-        computerChoice.innerHTML = "paper✋";
+        randomComputerChoice = "paper✋";
     else
-        computerChoice.innerHTML = "scissor✌️";
+        randomComputerChoice = "scissor✌️";
+
+    computerChoice.innerHTML = randomComputerChoice;
 }
 
-// function generateResult(){
-//     if(userChoice == )
-// }
+let resultDisplay;
+
+function generateResult(){
+    if(userChoice === randomComputerChoice )
+        resultDisplay = "Draw";
+    else if(userChoice==="rock👊" && randomComputerChoice==="paper✋") 
+        resultDisplay = "You Lost!";
+    else if(userChoice==="rock👊" && randomComputerChoice==="scissor✌️") 
+        resultDisplay = "You Win!";
+    else if(userChoice==="paper✋" && randomComputerChoice==="scissor✌️") 
+        resultDisplay = "You Lost!";
+    else if(userChoice==="paper✋" && randomComputerChoice==="rock👊") 
+        resultDisplay = "You Win!";
+    else if(userChoice==="scissor✌️" && randomComputerChoice==="rock👊") 
+        resultDisplay = "You Lost!";
+    else if(userChoice==="scissor✌️" && randomComputerChoice==="paper✋") 
+        resultDisplay = "You Win!";
+
+    result.innerHTML = resultDisplay;
+}
 
